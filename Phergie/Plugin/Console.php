@@ -91,7 +91,6 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
 					    $counter++;
 				    } else {
 				    $this->plugins->send->send($source, "Updating source code and restarting the bot!", $nick);
-				    time_nanosleep(2, 100000);
 				    $this->doQuit("Source updated - Restart required!");
 				    } 
 				    
