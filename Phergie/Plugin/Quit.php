@@ -53,12 +53,30 @@ class Phergie_Plugin_Quit extends Phergie_Plugin_Abstract
      */
     public function onCommandQuit($message = null)
     {
-        if ($message === null) {
-            $message = 'Requested by ' . $this->getEvent()->getNick();
-        }
-        $this->doQuit($message);
+    	$event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+    	
+    	if ($this->plugins->permission->getLevel($hostmask) == 3)
+    	{
+        	if ($message === null) {
+            	$message = 'Requested by ' . $this->getEvent()->getNick();
+        		}
+        	$this->doQuit($message);
+    	} else {
+    		$this->plugins->send->send($source, "You dont have the permission to do that :<", $nick);
+    	}
     }
 	
+	/**
+     * A test command written to test the new outputting plugin and
+     * permission system. This command may not be in the finished
+     * build of the bot though as the actual use of it is pointless.
+     * 
+     * @return void
+     */
 	public function onCommandTest()
 	{
 		$event = $this->getEvent();
@@ -75,5 +93,16 @@ class Phergie_Plugin_Quit extends Phergie_Plugin_Abstract
 		
 		$this->plugins->send->send($source, "Well this seams to work fine :D", $nick);
 		$this->plugins->send->send($source, "Turns out you're " . $out, $nick);
+	}
+	
+	public function onCommandHobby()
+	{
+		$event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		
+		$this->plugins->send->send($source, "Steam is great!", $nick);
 	}
 }

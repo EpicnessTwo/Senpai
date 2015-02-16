@@ -55,7 +55,7 @@ class Phergie_Plugin_Ctcp extends Phergie_Plugin_Abstract
             return;
         }
         $source = $this->getEvent()->getSource();
-        $msg = 'Phergie ' . Phergie_Bot::VERSION . ' (http://phergie.org)';
+        $msg = $this->getConfig('bot.version');
         $this->doVersion($source, $msg);
     }
 
