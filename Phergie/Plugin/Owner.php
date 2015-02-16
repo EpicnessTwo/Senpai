@@ -72,6 +72,23 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
     }
     
+    public function onCommandNotice($to, $args)
+    {
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		
+		if ($this->plugins->permission->getLevel($hostmask) >= 2)
+		{
+		    $this->plugins->send->notice($to, $args, $nick);
+		} else {
+		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
+		}
+		
+    }
+    
     public function onCommandAct($args)
     {
         $event = $this->getEvent();
