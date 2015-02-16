@@ -78,7 +78,7 @@ return array(
 	// been added to try to prevent the output of this bot triggering other
 	// bots.
 	
-	'output.prefix' => '&rand[&nick] ', // Example "> This is a bot output!"
+	'output.prefix' => '£04&nick, ', // Example "> This is a bot output!"
 	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows
