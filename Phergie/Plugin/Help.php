@@ -46,6 +46,7 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
     public function onLoad()
     {
         $this->getPluginHandler()->getPlugin('Command');
+        $this->getPluginHandler()->getPlugin('Send');
     }
 
     /**
@@ -146,7 +147,7 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
         if (!$query) {
             $msg = 'These plugins have help information available: '
                  . implode(', ', array_keys($this->registry));
-            $this->doPrivmsg($nick, $msg);
+            $this->plugins->send->send($nick, $msg, $nick);
             return;
         }
 
@@ -154,18 +155,18 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
         $query = strtolower($query);
         if (isset($this->registry[$query])) {
             $msg = $query . ' - ' . $this->registry[$query]['desc'];
-            $this->doPrivmsg($nick, $msg);
+            $this->plugins->send->send($nick, $msg, $nick);
 
             $msg = 'Available commands - '
                  . implode(', ', array_keys($this->registry[$query]['cmds']));
-            $this->doPrivmsg($nick, $msg);
+            $this->plugins->send->send($nick, $msg, $nick);
 
             if ($this->getConfig('command.prefix')) {
                 $msg
                     = 'Note that these commands must be prefixed with "'
                     . $this->getConfig('command.prefix')
                     . '" (without quotes) when issued in a public channel.';
-                $this->doPrivmsg($nick, $msg);
+                $this->plugins->send->send($nick, $msg, $nick);
             }
         }
 
@@ -186,7 +187,7 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
                 $msg .= ' [' . implode('] [', $cmd['params']) . ']';
             }
             $msg .= ' - ' . $cmd['desc'];
-            $this->doPrivmsg($nick, $msg);
+            $this->plugins->send->send($nick, $msg, $nick);
         }
     }
 
