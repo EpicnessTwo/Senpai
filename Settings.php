@@ -36,6 +36,7 @@ return array(
 		'Owner',
 		'CTCP',
 		'Console',
+		'General',
     ),
 
     // If set to true, this allows any plugin dependencies for plugins
@@ -54,7 +55,7 @@ return array(
     // invoked like this: join #channel
     
     // Examples of supported values for autojoins.channel:
-    'autojoin.channels' => '#Epic,#rewbycraft',
+    'autojoin.channels' => '#Epic,#EpicBots',
     // 'autojoin.channels' => array('#channel1', '#channel2'),
     // 'autojoin.channels' => array(
     //                            'host1' => '#channel1,#channel2',
@@ -78,7 +79,7 @@ return array(
 	// been added to try to prevent the output of this bot triggering other
 	// bots.
 	
-	'output.prefix' => '[] ', // Example "> This is a bot output!"
+	'output.prefix' => '[-&nick] ', // Example "> This is a bot output!"
 	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows
@@ -97,15 +98,18 @@ return array(
 	
 	'permission.admin' => array("cookiebot@bots.epickitty.uk", "someone@else.trusted"),
 	
-	'permission.black' => array("~code_@irc.thedoctorslife.com"),
+	'permission.black' => array("some!bl@cklist.ed"),
 	
 	// Below is a list of outputs that will be used if there is an error.
 	
 	// If the user running the command doesn't have the permissions to do so
-	'error.noperms' => "Im sorry but I dont think you're allowed to do that :<",
+	'error.noperms' => "\x0304Im sorry but I dont think you're allowed to do that :<",
 	
 	// For random errors that i really dont see a way of catogorising (Revise Spellings!)
-	'error.misc' => "Sorry but I can't work out what just happened. Did you break something?",
+	'error.misc' => "\x0304Sorry but I can't work out what just happened. Did you break something?",
+	
+	// For people who are blacklisted from using the bot using the permisson.black array above
+	'error.blacklisted' => "\x0304Welp, you must have done something wrong because you are banned from using me!",
 	
 	
 	
