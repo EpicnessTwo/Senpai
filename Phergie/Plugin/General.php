@@ -57,4 +57,19 @@ class Phergie_Plugin_General extends Phergie_Plugin_Abstract
 		}
     }
     
+    public function onCommandAbout()
+    {
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		if($this->plugins->permission->isBlacklisted($hostmask))
+		{
+		    $this->plugins->send->send($source, $this->getConfig('error.blacklisted') , $nick);
+		} else {
+		    $this->plugins->send->send($source, $this->getConfig('bot.version'), $nick);
+		}
+    }
+    
 }
