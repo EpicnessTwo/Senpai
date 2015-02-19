@@ -37,6 +37,7 @@ class Phergie_Plugin_General extends Phergie_Plugin_Abstract
 		{
 		    $this->plugins->send->send($source, $this->getConfig('error.blacklisted') , $nick);
 		} else {
+		    // Thanks Cajs for some help with the data() function!
 		    $this->plugins->send->send($source, date('l jS \of F Y h:i:s A'), $nick);
 		}
     }
