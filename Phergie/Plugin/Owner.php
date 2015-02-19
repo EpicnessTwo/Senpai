@@ -11,6 +11,7 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
         $this->getPluginHandler()->getPlugin('Command');
 		$this->getPluginHandler()->getPlugin('Send');
 		$this->getPluginHandler()->getPlugin('Permission');
+		$this->getPluginHandler()->getPlugin('Formatting');
     }
     
     public function onCommandJoin($channel, $key = null)
@@ -65,6 +66,7 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 2)
 		{
+			$args = $this->plugins->formatting->format($args);
 		    $this->plugins->send->send($source, $args, $nick);
 		} else {
 		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);

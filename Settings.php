@@ -37,6 +37,7 @@ return array(
 		'CTCP',
 		'Console',
 		'General',
+		'Formatting',
     ),
 
     // If set to true, this allows any plugin dependencies for plugins
@@ -79,7 +80,12 @@ return array(
 	// been added to try to prevent the output of this bot triggering other
 	// bots.
 	
-	'output.prefix' => '[-&nick] ', // Example "> This is a bot output!"
+	'output.prefix' => '&rand[-&nick] ', // Example "> This is a bot output!"
+	
+	// The following config item will be what is used before formatting options
+	// when using commands that are handled with the Formatting.php plugin.
+	
+	'format.prefix' => "&",
 	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows

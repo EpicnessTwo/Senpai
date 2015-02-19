@@ -22,10 +22,8 @@ class Phergie_Plugin_Send extends Phergie_Plugin_Abstract
 	public function send($to, $content, $nick)
 	{
 		$prefix = $this->getConfig('output.prefix');
-		
 		$array1 = array("£", "&nick", "&rand");
 		$array2 = array("\x03", $nick, "\x03" . rand(0, 15));
-		
 		$prefix = str_ireplace($array1, $array2, $prefix);
 		
 		$this->doRaw("PRIVMSG " . $to . " :" . $prefix . $content);
@@ -34,10 +32,8 @@ class Phergie_Plugin_Send extends Phergie_Plugin_Abstract
 	public function notice($to, $content, $nick)
 	{
 		$prefix = $this->getConfig('output.prefix');
-		
 		$array1 = array("£", "&nick", "&rand");
 		$array2 = array("\x03", $nick, "\x03" . rand(0, 15));
-		
 		$prefix = str_ireplace($array1, $array2, $prefix);
 		
 		$this->doRaw("NOTICE " . $to . " :" . $prefix . $content);
