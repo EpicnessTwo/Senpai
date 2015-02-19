@@ -41,4 +41,20 @@ class Phergie_Plugin_General extends Phergie_Plugin_Abstract
 		    $this->plugins->send->send($source, date('l jS \of F Y h:i:s A'), $nick);
 		}
     }
+    
+    public function onCommandSource()
+    {
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		if($this->plugins->permission->isBlacklisted($hostmask))
+		{
+		    $this->plugins->send->send($source, $this->getConfig('error.blacklisted') , $nick);
+		} else {
+		    $this->plugins->send->send($source, "Here is my source code! https://github.com/EpicnessTwo/Senpai", $nick);
+		}
+    }
+    
 }
