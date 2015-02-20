@@ -81,20 +81,32 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 3)
     	{
-			$data = preg_split('/[\r\n]+/', exec("git pull"), -1, PREG_SPLIT_NO_EMPTY);
-		    $counter = 0;
-		    while($counter !== count($data))
-				{   
-				    if($data[$counter] == "Already up-to-date.")
-				    {
-					    $this->plugins->send->send($source, "The source code is already at the latest version. No need to update!", $nick);
-					    $counter++;
-				    } else {
-				    $this->plugins->send->send($source, "Updating source code and restarting the bot!", $nick);
-				    $this->doQuit("Source updated - Restart required!");
-				    } 
-				    
-				}
+			$base = exec("git merge-base @ @{u}");
+			$local = exec("git rev-parse @{0}");
+			$remote = exec("git rev-parse @{u}");
+			
+			$out = null;
+			
+			if($local == $remote)
+			{
+				$out = 2;
+			} else if ($local == $base)
+			{
+				$out = 1;
+			}
+			
+			if ($out === null)
+			{
+				$this->plugins->send->send($source, "Unknown error! Try using the 'check' command!", $nick);
+			} else if ($out = 1){
+				$this->plugins->send->send($source, "No need to update, the local copy is fine!", $nick);
+			} else {
+				$this->plugins->send->send($source, "Yep, looks like the source code is outdated. Going to update it now for you!", $nick);
+				exec("git pull");
+				$this->plugins->send->send($source, "Right, the source is updated. See you on the other side!", $nick);
+				$this->doQuit("Updated source code - Restart required!");
+			}
+			
     	} else {
     	    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
     	}
