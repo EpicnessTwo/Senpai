@@ -16,6 +16,7 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
     
     public function onCommandCookie($who = null)
     {
+    	// Default event grabbing stuffs
         $event = $this->getEvent();
 		$source = $event->getSource();
 		$nick = $event->getNick();
@@ -24,9 +25,9 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
         
         if($this->plugins->permission->isBlacklisted($hostmask))
 		{
-		    $this->plugins->send->send($source, $this->getConfig('error.blacklisted') , $nick);
+		    $this->plugins->send->send($source, $this->getConfig('error.blacklisted') , $nick); // Ran if the user is blacklisted from the bot
 		} else {
-		    $cookies = array(
+		    $cookies = array( // List of Cookies
 		            "some freshly baked",
 		            "some chocolate",
 		            "a load of",
@@ -38,9 +39,8 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		            "some old",
 		            "some fresh"
 		        );
-		    $countcookies = count($cookies);      
-		  
-		        
+		    $countcookies = count($cookies) - 1; // Counts the cookies in the array above and minus 1 because the first one is 0 and not 1
+		 	
 		    $extra = array(
 		            "a walm glass of milk",
 		            "a nice cup of tea",
@@ -49,10 +49,12 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		            "a fresh glass of orange juice",
 		            "a mug of hot chocolate",
 		        );
-		    $countextra = count($extra); 
+		    $countextra = count($extra) - 1; // Ditto
 		       
 		    if($who === null){$who = $nick;} //If the $who variable isnt set, set it to the nick of the person who ran the command!
 		    
+		    
+		    // The output!
 		    $this->doAction($source, "gives " . $cookies[rand(0, $countcookies)] . " cookies to " . $nick . " with " . $extra[rand(0, $countextra)]. ".");
 		}
     }
