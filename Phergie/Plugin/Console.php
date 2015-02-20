@@ -81,24 +81,10 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 3)
     	{
-			$base = exec("git merge-base @ @{u}");
-			$local = exec("git rev-parse @{0}");
-			$remote = exec("git rev-parse @{u}");
-			
-			$out = null;
-			
-			if($local == $remote)
-			{
-				$out = 2;
-			} else if ($local == $base)
-			{
-				$out = 1;
-			}
-			
-			if ($out === null)
-			{
-				$this->plugins->send->send($source, "Unknown error! Try using the 'check' command!", $nick);
-			} else if ($out = 1){
+    		$var1 = exec("git rev-parse HEAD");
+    		$var2 = exec("git rev-parse @{u}");
+    		
+			if ($out = 1){
 				$this->plugins->send->send($source, "No need to update, the local copy is fine!", $nick);
 			} else {
 				$this->plugins->send->send($source, "Yep, looks like the source code is outdated. Going to update it now for you!", $nick);
@@ -122,22 +108,12 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 3)
     	{
-			$base = exec("git merge-base @ @{u}");
-			$local = exec("git rev-parse @{0}");
-			$remote = exec("git rev-parse @{u}");
+			$var1 = exec("git rev-parse HEAD");
+    		$var2 = exec("git rev-parse @{u}");
 			
-			if($local == $remote)
-			{
-				$out = "Up to date";
-			} else if ($local == $base)
-			{
-				$out = "Needs updating";
-			} else if ($remote == $base)
-			{
-				$out = "Local copy is modified";
-			} else {
-				$out = "Output unknown, can't detect git repo";
-			}
+			if ($var1 !== $var2){$out = "The local copy does not match the GitHub Repo, try updating!";}
+			
+			if ($var1 == $var2)($out = "The local copy matches the GitHub Repo, Everything is up-to-date!");
 			
 			$this->plugins->send->send($source, "Current Git Status: " . $out, $nick);
     	} else {
