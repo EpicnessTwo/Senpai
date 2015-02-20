@@ -99,4 +99,37 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
     	    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
     	}
     }
+    
+    public function onCommandCheck()
+    {
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		
+		if ($this->plugins->permission->getLevel($hostmask) >= 3)
+    	{
+			$base = exec("git merge-base @ @{u}");
+			$local = exec("git rev-parse @{0}");
+			$remote = exec("git rev-parse @{u}");
+			
+			if($local == $remote)
+			{
+				$out = "Up to date";
+			} else if ($local == $base)
+			{
+				$out = "Needs updating";
+			} else if ($remote == $base)
+			{
+				$out = "Local copy is modified";
+			} else {
+				$out = "Output unknown, can't detect git repo";
+			}
+			
+			$this->plugins->send->send($source, "Current Git Status: " . $out, $nick);
+    	} else {
+    	    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
+    	}
+    }
 }

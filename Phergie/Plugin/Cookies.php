@@ -15,7 +15,7 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		$this->getPluginHandler()->getPlugin('UserInfo');
     }
     
-    public function onCommandCookie($who = null)
+    public function onCommandCookie($args = null)
     {
     	// Default event grabbing stuffs
         $event = $this->getEvent();
@@ -53,11 +53,12 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		        );
 		    $countextra = count($extra) - 1; // Ditto
 		       
-		    if($who === null){$who = $nick;} //If the $who variable isnt set, set it to the nick of the person who ran the command!
-		    
+		    if($args === null){$args = $nick;} //If the $who variable isnt set, set it to the nick of the person who ran the command!
+		    $args = $this->plugins->formatting->extraFormatting($args);
+			$args = $this->plugins->formatting->format($args);
 		    
 		    // The output!
-		    $this->doAction($source, "gives " . $cookies[rand(0, $countcookies)] . " cookies to " . $who . " with " . $extra[rand(0, $countextra)]. ".");
+		    $this->doAction($source, "gives " . $cookies[rand(0, $countcookies)] . " cookies to " . $args . " with " . $extra[rand(0, $countextra)]. ".");
 		}
     }
 }
