@@ -5,6 +5,11 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
  // This plugin is used to manage formatting for text. Run the text though
  // Any of the following functions to make the output awesome!
  
+ public function onLoad()
+ {
+     $this->getPluginHandler()->getPlugin('UserInfo');
+ }
+ 
  public function format($text)
  {
      $input = array(
@@ -31,6 +36,32 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
  public function rainbow($text)
  {
      return "Broked!";
+ }
+ 
+ public function extraFormatting($text)
+ {
+     $input = array(
+            $this->getConfig('format.prefix') . "nick",
+            $this->getConfig('format.prefix') . "randuser",
+            $this->getConfig('format.prefix') . "randcolour",
+            $this->getConfig('format.prefix') . "chan",
+            $this->getConfig('format.prefix') . "time",
+            $this->getConfig('format.prefix') . "date",
+      );
+      
+     $output = array(
+             $this->getEvent()->getNick(),
+             $this->plugins->userinfo->getRandomUser($this->getEvent()->getSource(), array()),
+             "\x03" . rand(0,15),
+             $this->getEvent()->getSource(),
+             date('h:i:s A'),
+             date('l jS \of F Y'),
+      );
+      
+     $out = str_ireplace($input, $output, $text);
+     
+     return $out;
+  
  }
     
 }

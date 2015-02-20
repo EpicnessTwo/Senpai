@@ -65,7 +65,8 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		$hostmask = $hostmask[1];
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 2)
-		{
+		{	
+			$args = $this->plugins->formatting->extraFormatting($args);
 			$args = $this->plugins->formatting->format($args);
 		    $this->plugins->send->send($source, $args, $nick);
 		} else {
