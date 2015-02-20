@@ -5,10 +5,12 @@ Originally written by the Phergie Team, this is a modified PHP IRC Bot that has 
 Currently, the bot has a few commands added but loads more needs adding!
 
 Current Features:
- - Git Commands
+ - Git manipulation (Requires "git")
  - Permission System
  - Configureable Output System
  - Formatting Tools For Output Manipulation
+
+As most of it is written in a linux box, some things may not fully work on windows. I can't fully help this :<
 
 Info
 =====
