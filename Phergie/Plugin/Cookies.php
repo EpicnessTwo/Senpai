@@ -12,6 +12,7 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
         $this->getPluginHandler()->getPlugin('Command');
 		$this->getPluginHandler()->getPlugin('Send');
 		$this->getPluginHandler()->getPlugin('Permission');
+		$this->getPluginHandler()->getPlugin('UserInfo');
     }
     
     public function onCommandCookie($who = null)
@@ -37,7 +38,8 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		            "some tasty",
 		            "some walm",
 		            "some old",
-		            "some fresh"
+		            "some fresh",
+		            "some of " . $this->plugins->userinfo->getRandomUser($this->getEvent()->getSource(), array()) . "'s",
 		        );
 		    $countcookies = count($cookies) - 1; // Counts the cookies in the array above and minus 1 because the first one is 0 and not 1
 		 	
@@ -55,7 +57,7 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		    
 		    
 		    // The output!
-		    $this->doAction($source, "gives " . $cookies[rand(0, $countcookies)] . " cookies to " . $nick . " with " . $extra[rand(0, $countextra)]. ".");
+		    $this->doAction($source, "gives " . $cookies[rand(0, $countcookies)] . " cookies to " . $who . " with " . $extra[rand(0, $countextra)]. ".");
 		}
     }
 }
