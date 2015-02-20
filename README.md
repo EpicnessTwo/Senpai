@@ -2,7 +2,13 @@ Senpai the IRC Bot
 =================
 
 Originally written by the Phergie Team, this is a modified PHP IRC Bot that has been worked on by EpicKitty  
-Currently, the bot is useless as nothing has been added but watch this space!  
+Currently, the bot has a few commands added but loads more needs adding!
+
+Current Features:
+ - Git Commands
+ - Permission System
+ - Configureable Output System
+ - Formatting Tools For Output Manipulation
 
 Info
 =====
