@@ -38,6 +38,7 @@ return array(
 		'Console',
 		'General',
 		'Formatting',
+		'Cookies',
     ),
 
     // If set to true, this allows any plugin dependencies for plugins
