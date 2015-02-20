@@ -88,6 +88,11 @@ return array(
 	
 	'format.prefix' => "&",
 	
+	// Now this is fun! The following one will stop any nick insterted from
+	// being called out when using the randuser formatting tool
+	
+	'randuser.blacklist' => array("EpicKitty"),
+	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows
 	// for 3 different permission levels, Owner, Admin and Blacklisted.

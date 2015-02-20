@@ -51,7 +51,7 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
       
      $output = array(
              $this->getEvent()->getNick(),
-             $this->plugins->userinfo->getRandomUser($this->getEvent()->getSource(), array()),
+             $this->plugins->userinfo->getRandomUser($this->getEvent()->getSource(), $this->getConfig('randuser.blacklist')),
              "\x03" . rand(0,15),
              $this->getEvent()->getSource(),
              date('h:i:s A'),

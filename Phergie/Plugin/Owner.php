@@ -85,6 +85,8 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 2)
 		{
+			$args = $this->plugins->formatting->extraFormatting($args);
+			$args = $this->plugins->formatting->format($args);
 		    $this->plugins->send->notice($to, $args, $nick);
 		} else {
 		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
@@ -102,6 +104,8 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 2)
 		{
+			$args = $this->plugins->formatting->extraFormatting($args);
+			$args = $this->plugins->formatting->format($args);
 		    $this->doAction($source, $args);
 		} else {
 		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
@@ -118,6 +122,8 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 3)
 		{
+			$args = $this->plugins->formatting->extraFormatting($args);
+			$args = $this->plugins->formatting->format($args);
 		    $this->doRaw($args);
 		} else {
 		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
@@ -134,6 +140,8 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
 		
 		if ($this->plugins->permission->getLevel($hostmask) >= 3)
 		{
+			$args = $this->plugins->formatting->extraFormatting($args);
+			$args = $this->plugins->formatting->format($args);
 		    $this->plugins->send->send($to, $args, $nick);
 		} else {
 		    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
