@@ -58,6 +58,7 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
              date('l jS \of F Y'),
       );
       
+      
      $out = str_ireplace($input, $output, $text);
      
      return $out;

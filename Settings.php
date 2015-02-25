@@ -106,7 +106,7 @@ return array(
 	// To make things simple, please remove all capitals from the items below
 	// as this will help with making sure everything works fine
 	
-	'permission.owner' => array("epickitty@i.love.furries.ga", "Someoneelse@hostmask.com"),
+	'permission.owner' => array("epickitty@i.love.furries.ga", "meow@dont.drink.that.racist.coffee"),
 	
 	'permission.admin' => array("cookiebot@bots.epickitty.uk", "someone@else.trusted"),
 	

@@ -21,7 +21,7 @@ class Phergie_Plugin_General extends Phergie_Plugin_Abstract
 		if ($this->plugins->permission->isOwner($hostmask)){ $out = "my Master!";} else
 		if ($this->plugins->permission->isAdmin($hostmask)){ $out = "an Admin!";} else
 		if ($this->plugins->permission->isBlacklisted($hostmask)){ $out = "banned from using me! What did you do wrong? ;~;";} else
-		{ $out = "... no wait... I have no idea who you are :<";}
+		{ $out = "... no wait... I have no idea who you are! Would you like to be my friend?";}
 		
 		$this->plugins->send->send($source, "Well it seams that you are " . $out, $nick);
     }
