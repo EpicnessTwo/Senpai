@@ -35,11 +35,15 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
  
  public function rainbow($text)
  {
+      // This is not yet implemented!
      return "Broked!";
  }
  
  public function extraFormatting($text)
  {
+   
+     $letters = range("a", "z");
+   
      $input = array(
             $this->getConfig('format.prefix') . "nick",
             $this->getConfig('format.prefix') . "randuser",
@@ -47,6 +51,8 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
             $this->getConfig('format.prefix') . "chan",
             $this->getConfig('format.prefix') . "time",
             $this->getConfig('format.prefix') . "date",
+            $this->getConfig('format.prefix') . "randnumber",
+            $this->getConfig('format.prefix') . "randletter",
       );
       
      $output = array(
@@ -56,6 +62,9 @@ class Phergie_Plugin_Formatting extends Phergie_Plugin_Abstract
              $this->getEvent()->getSource(),
              date('h:i:s A'),
              date('l jS \of F Y'),
+             rand(1, 1000),
+             $letters[rand(0, count($letters) - 1)],
+             
       );
       
       

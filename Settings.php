@@ -39,6 +39,8 @@ return array(
 		'General',
 		'Formatting',
 		'Cookies',
+		'Random',
+		'Utilities',
     ),
 
     // If set to true, this allows any plugin dependencies for plugins
@@ -50,7 +52,7 @@ return array(
     'ui.enabled' => true,
 
     // Examples of a prefix for command-based plugins
-    'command.prefix' => '-',
+    'command.prefix' => '~',
     // If you uncomment the line above, this would invoke onCommandJoin 
     // in the Join plugin: !join #channel
     // By default, no prefix is assumed, so the same command would be 
@@ -81,7 +83,7 @@ return array(
 	// been added to try to prevent the output of this bot triggering other
 	// bots.
 	
-	'output.prefix' => '&rand[-&nick] ', // Example "> This is a bot output!"
+	'output.prefix' => '[-&nick] ', // Example "> This is a bot output!"
 	
 	// The following config item will be what is used before formatting options
 	// when using commands that are handled with the Formatting.php plugin.
@@ -92,6 +94,12 @@ return array(
 	// being called out when using the randuser formatting tool
 	
 	'randuser.blacklist' => array("EpicKitty"),
+	
+	// Now this is something to make it look a little better! Fancy Outputs
+	// is pretty much as it says, it makes the output on some commands look
+	// nicer!
+	
+	'commands.fancyOutput' => true,
 	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows
@@ -106,7 +114,7 @@ return array(
 	// To make things simple, please remove all capitals from the items below
 	// as this will help with making sure everything works fine
 	
-	'permission.owner' => array("epickitty@i.love.furries.ga", "meow@dont.drink.that.racist.coffee"),
+	'permission.owner' => array("epickitty@i.love.furries.ga", "meow@dont.drink.that.racist.coffee", "epickitty@epickitty.uk"),
 	
 	'permission.admin' => array("cookiebot@bots.epickitty.uk", "someone@else.trusted"),
 	
