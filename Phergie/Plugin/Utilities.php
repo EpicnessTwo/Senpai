@@ -19,9 +19,16 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
 		$hostmask = explode("!", $this->event->getHostmask());
 		$hostmask = $hostmask[1];
         
+            // Pre-Fun things
+            // This removes the https:// and http:// from the front of the $args
+            // just incase the user left them there
+            
+            $args = str_ireplace(array("http://", "https://"), array("", ""), $args);
+        
+        
         	// IPv6 Handling
         	// This detects if the input args is an IPv6 address and runs if
-        	// it is.
+        	// it is.\x03
         if (filter_var($args , FILTER_VALIDATE_IP, FILTER_FLAG_IPV6))
         {
             if ($this->getConfig('commands.fancyOutput'))

@@ -36,7 +36,7 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		            "some magical",
 		            "some awesome",
 		            "some tasty",
-		            "some walm",
+		            "some warm",
 		            "some old",
 		            "some fresh",
 		            "some of " . $this->plugins->userinfo->getRandomUser($this->getEvent()->getSource(), array()) . "'s",
@@ -44,12 +44,15 @@ class Phergie_Plugin_Cookies extends Phergie_Plugin_Abstract
 		    $countcookies = count($cookies) - 1; // Counts the cookies in the array above and minus 1 because the first one is 0 and not 1
 		 	
 		    $extra = array(
-		            "a walm glass of milk",
+		            "a warm glass of milk",
 		            "a nice cup of tea",
 		            "some more cookies",
-		            "a walm, cosy hug",
+		            "a warm, cosy hug",
 		            "a fresh glass of orange juice",
 		            "a mug of hot chocolate",
+		            "a plate of jelly",
+		            "a cosy blanket to keep you warm",
+		            "some chocolate sauce"
 		        );
 		    $countextra = count($extra) - 1; // Ditto
 		       
