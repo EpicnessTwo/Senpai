@@ -10,7 +10,7 @@ return array(
             'port' => 6667,
             'username' => 'NotSenpai',
             'realname' => 'NotSenpai',
-            'nick' => 'NotSenpai',
+            'nick' => 'NotSenpaiKitten',
             // 'password' => 'password goes here if needed',
             // 'transport' => 'ssl', // uncomment to connect using SSL
             // 'encoding' => 'UTF-8', // uncomment if using UTF-8
