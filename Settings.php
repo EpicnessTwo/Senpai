@@ -21,7 +21,7 @@ return array(
     'processor' => 'async',
     'processor.options' => array('usec' => 200000),
     // Time zone. See: http://www.php.net/manual/en/timezones.php
-    'timezone' => 'UTC',
+    'timezone' => 'GMT + 1',
 
     // Whitelist of plugins to load
     'plugins' => array(

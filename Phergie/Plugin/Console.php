@@ -6,6 +6,7 @@ class Phergie_Plugin_Console extends Phergie_Plugin_Abstract
         $this->getPluginHandler()->getPlugin('Command');
 		$this->getPluginHandler()->getPlugin('Send');
 		$this->getPluginHandler()->getPlugin('Permission');
+		$this->getPluginHandler()->getPlugin('SwearFilter');
     }
     
     public function onCommandCmd($args)
