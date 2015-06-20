@@ -401,10 +401,6 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
             $data = shell_exec("ping6 -c $pingCount -v -q " . escapeshellcmd($args));
 	    	$data = preg_split('/[\r\n]+/', $data, -1, PREG_SPLIT_NO_EMPTY);
 	    	
-	    	    // Grabs the IP Address from the first line
-	    	$ip = explode("(", $data[0]);
-	    	$ip = explode(")", $ip[1]);
-	    	$ip = $ip[0];
 	    	
 	    	    // Grabs the total time taken from the 3rd line
 	    	$total = explode(" ", $data[2]);
@@ -420,7 +416,7 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
             {
                 $this->plugins->send->send($source, "\x02\x0304Pinged \x0305$args $ip \x0304a total of \x0305$pingCount \x0304times. Total time: \x0305$total \x0304ms. Average: \x0305$average \x0304ms.", $nick);
             } else {
-                $this->plugins->send->send($source, "Pinged $args $ip a total of $pingCount times. Total time: $total ms. Average: $average ms.", $nick);
+                $this->plugins->send->send($source, "Pinged $args a total of $pingCount times. Total time: $total ms. Average: $average ms.", $nick);
             }
             
         } else {
