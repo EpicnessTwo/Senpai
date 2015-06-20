@@ -402,8 +402,9 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
 	    	$data = preg_split('/[\r\n]+/', $data, -1, PREG_SPLIT_NO_EMPTY);
 	    	
 	    	    // Grabs the IP Address from the first line
-	    	$ip = explode(" ", $data[0]);
-	    	$ip = $ip[2];
+	    	$ip = explode("(", $data[0]);
+	    	$ip = explode(")", $ip[1]);
+	    	$ip = $ip[0];
 	    	
 	    	    // Grabs the total time taken from the 3rd line
 	    	$total = explode(" ", $data[2]);
