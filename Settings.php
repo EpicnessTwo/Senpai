@@ -83,7 +83,7 @@ return array(
 	// been added to try to prevent the output of this bot triggering other
 	// bots.
 	
-	'output.prefix' => '[-&nick] ', // Example "> This is a bot output!"
+	'output.prefix' => '', // Example "> This is a bot output!"
 	
 	// The following config item will be what is used before formatting options
 	// when using commands that are handled with the Formatting.php plugin.
@@ -94,6 +94,11 @@ return array(
 	// being called out when using the randuser formatting tool
 	
 	'randuser.blacklist' => array("EpicKitty"),
+	
+	// The following command stops people from being pinged when the randuser
+	// command is ran.
+	
+	'randuser.noPing' => true,
 	
 	// Now this is something to make it look a little better! Fancy Outputs
 	// is pretty much as it says, it makes the output on some commands look
@@ -114,7 +119,7 @@ return array(
 	// To make things simple, please remove all capitals from the items below
 	// as this will help with making sure everything works fine
 	
-	'permission.owner' => array("epickitty@i.love.furries.ga", "meow@dont.drink.that.racist.coffee", "epickitty@epickitty.uk"),
+	'permission.owner' => array("epickitty@i.love.furries.ga", "meow@dont.drink.that.racist.coffee", "epickitty@epickitty.uk", "anna@borealis.voxelstorm.com"),
 	
 	'permission.admin' => array("cookiebot@bots.epickitty.uk", "someone@else.trusted"),
 	

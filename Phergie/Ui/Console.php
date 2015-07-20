@@ -155,7 +155,7 @@ class Phergie_Ui_Console extends Phergie_Ui_Abstract
      */
     public function onPluginFailure($plugin, $message)
     {
-        $this->console('Unable to load plugin ' . $plugin . ' - ' . $message);
+        $this->console('Unable to load plugin ' . $plugin . ' Reason: ' . $message);
     }
 
     /**
@@ -170,8 +170,7 @@ class Phergie_Ui_Console extends Phergie_Ui_Abstract
     public function onEvent(Phergie_Event_Abstract $event,
         Phergie_Connection $connection
     ) {
-        $host = $connection->getHostmask()->getHost();
-        $this->console($host . ' <- ' . $event->getRawData());
+        // Removed due to clean up of actual output system
     }
 
     /**
