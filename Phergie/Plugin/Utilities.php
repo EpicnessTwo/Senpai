@@ -432,4 +432,51 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
         } 
     }
     
+    public function onCommandStatus($user = null)
+    {
+        // Default event grabbing stuffs
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+        
+        // This plugin will return the user's current channel status. (OP, Voiced, Ect...)
+        
+        if ($user !== null){$nick = $user;}
+        
+        // User variables
+        
+        if ($this->plugins->userinfo->isIn($nick, $source))
+        {
+            $isIn = true;
+            
+            $isOwner = $this->plugins->userinfo->isOwner($nick, $source);
+            $isAdmin = $this->plugins->userinfo->isAdmin($nick, $source);
+            $isOP = $this->plugins->userinfo->isOp($nick, $source);
+            $isHalfop = $this->plugins->userinfo->isHalfop($nick, $source);
+            $isVoice = $this->plugins->userinfo->isVoice($nick, $source);
+            
+            if ($isOwner){$out['Owner'] = 'True';} else {$out['Owner'] = 'False';}
+            if ($isAdmin){$out['Admin'] = 'True';} else {$out['Admin'] = 'False';}
+            if ($isOP){$out['Op'] = 'True';} else {$out['Op'] = 'False';}
+            if ($isHalfop){$out['Halfop'] = 'True';} else {$out['Halfop'] = 'False';}
+            if (isVoice){$out['Voice'] = 'True';} else {$out['Voice'] = 'False';}
+            
+        } else {
+            $isIn = false;
+        }
+        if ($isIn)
+        {
+            if ($this->getConfig('utils.advancedStatus'))
+            {
+                $this->plugins->send->send($source, 'User status (' . $nick . '): Owner = ' . $out['Owner'] . ' | Admin = ' . $out['Admin'] . ' | Op = ' . $out['Op'] . ' | HalfOp = ' . $out['Halfop'] . ' | Voice = ' . $out['Voice'], $nick);
+            } else {
+                $this->plugins->send->send($source, 'User status (' . $nick . '): Op = ' . $out['Op'] . ' | Voice = ' . $out['Voice'], $nick);
+            }
+        } else {
+            $this->plugins->send->send($source, 'I don\'t see that user here!');
+        }
+    }
+    
 }
