@@ -479,4 +479,17 @@ class Phergie_Plugin_Utilities extends Phergie_Plugin_Abstract
         }
     }
     
+    public function onCommandTopic()
+    {
+        $event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+        
+        foreach ($this->getConfig("utils.topic") as $out)
+        {
+            $this->plugins->send->send($source, $out, $nick);
+        }
+    }
 }

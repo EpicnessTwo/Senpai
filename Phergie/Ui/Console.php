@@ -186,14 +186,7 @@ class Phergie_Ui_Console extends Phergie_Ui_Abstract
     public function onCommand(Phergie_Event_Command $event,
         Phergie_Connection $connection
     ) {
-        $plugin = $event->getPlugin()->getName();
-        $host = $connection->getHostmask()->getHost();
-        $type = strtoupper($event->getType());
-        $args = implode(' ', $event->getArguments());
-        $this->console(
-            $plugin . ' plugin: ' .
-            $host . ' -> ' . $type . ' ' . $args
-        );
+        // Removed for new system
     }
 
     /**

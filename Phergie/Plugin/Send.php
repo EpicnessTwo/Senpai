@@ -27,6 +27,7 @@ class Phergie_Plugin_Send extends Phergie_Plugin_Abstract
 		$prefix = str_ireplace($array1, $array2, $prefix);
 		
 		$this->doRaw("PRIVMSG " . $to . " :" . $prefix . $content);
+		echo('[' . $to . '] <Bot> ' . $prefix . $content . "\r\n");
 	}
 	
 	public function notice($to, $content, $nick)
@@ -37,6 +38,32 @@ class Phergie_Plugin_Send extends Phergie_Plugin_Abstract
 		$prefix = str_ireplace($array1, $array2, $prefix);
 		
 		$this->doRaw("NOTICE " . $to . " :" . $prefix . $content);
+	}
+	
+	public function onPrivmsg()
+	{
+		$context = $this->getEvent()->getArguments();
+		$context = $context[1];
+		$event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		
+		echo('[' . $source . '] <' . $nick . '> ' . $context . "\r\n");
+	}
+	
+	public function onAction()
+	{
+		$context = $this->getEvent()->getArguments();
+		$context = $context[1];
+		$event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+		
+		echo('[' . $source . '] *' . $nick . ' ' . $context . "\r\n");
 	}
 
 }

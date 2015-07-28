@@ -21,7 +21,7 @@ return array(
     'processor' => 'async',
     'processor.options' => array('usec' => 200000),
     // Time zone. See: http://www.php.net/manual/en/timezones.php
-    'timezone' => 'GMT + 1',
+    'timezone' => 'BST',
 
     // Whitelist of plugins to load
     'plugins' => array(
@@ -41,6 +41,7 @@ return array(
 		'Cookies',
 		'Random',
 		'Utilities',
+		'Games',
     ),
 
     // If set to true, this allows any plugin dependencies for plugins
@@ -105,6 +106,21 @@ return array(
 	// nicer!
 	
 	'commands.fancyOutput' => true,
+	
+	// The following can be toggled to true if the bot is being used on a
+	// network that supports Halfops, Admins and Owners. For Espernet, this
+	// is not used.
+	
+	'utils.advancedStatus' => false,
+	
+	// The following array is used for the topic command that is currently
+	// stashed inside of the Utils plugin. This is an array to allow more
+	// than one line of topic to be sent at a time.
+	
+	'utils.topic' => array(
+	            "\x0304EpicKitty\x0f's Second Topic:",
+	            "If EpicKitty isn't around, you can contact him via the links on https://epickitty.uk at the bottom or via email 'me@epickitty.uk'"
+	        ),
 	
 	// The below config items are made for the permission system contained
 	// inside the Permission.php file located in the Plugin folder. It allows
