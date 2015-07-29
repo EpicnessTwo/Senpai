@@ -147,7 +147,7 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
         if (!$query) {
             $msg = 'These plugins have help information available: '
                  . implode(', ', array_keys($this->registry));
-            $this->plugins->send->send($nick, $msg, $nick);
+            $this->doNotice($nick, $msg);
             return;
         }
 
@@ -155,18 +155,18 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
         $query = strtolower($query);
         if (isset($this->registry[$query])) {
             $msg = $query . ' - ' . $this->registry[$query]['desc'];
-            $this->plugins->send->send($nick, $msg, $nick);
+            $this->doNotice($nick, $msg);
 
             $msg = 'Available commands - '
                  . implode(', ', array_keys($this->registry[$query]['cmds']));
-            $this->plugins->send->send($nick, $msg, $nick);
+            $this->doNotice($nick, $msg);
 
             if ($this->getConfig('command.prefix')) {
                 $msg
                     = 'Note that these commands must be prefixed with "'
                     . $this->getConfig('command.prefix')
                     . '" (without quotes) when issued in a public channel.';
-                $this->plugins->send->send($nick, $msg, $nick);
+                $this->doNotice($nick, $msg);
             }
         }
 
@@ -187,7 +187,7 @@ class Phergie_Plugin_Help extends Phergie_Plugin_Abstract
                 $msg .= ' [' . implode('] [', $cmd['params']) . ']';
             }
             $msg .= ' - ' . $cmd['desc'];
-            $this->plugins->send->send($nick, $msg, $nick);
+            $this->doNotice($nick, $msg);
         }
     }
 

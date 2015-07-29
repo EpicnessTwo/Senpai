@@ -107,6 +107,12 @@ return array(
 	
 	'commands.fancyOutput' => true,
 	
+	// Enable this option to allow random people to send invites to the bot
+	// and the bot to then join channels. If this isn't enabled, the bot will
+	// simply message the sender telling them that it can't join.
+	
+	'owner.allowInvite' => true,
+	
 	// The following can be toggled to true if the bot is being used on a
 	// network that supports Halfops, Admins and Owners. For Espernet, this
 	// is not used.
@@ -155,6 +161,6 @@ return array(
 	
 	
 	// The version and name of the bot, used by the CTCP Version
-	'bot.version' => 'Senpai Dev v0.1 - Written by EpicKitty on the Phergie Framework',
+	'bot.version' => 'Senpai Dev v1.0 - Written by EpicKitty on the Phergie Framework',
 
 );

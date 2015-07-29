@@ -35,7 +35,7 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
     	}
     }
     
-    public function onCommandPart($channel, $reason = null)
+    public function onCommandPart($channel = null, $reason = null)
     {
         $event = $this->getEvent();
 		$source = $event->getSource();
@@ -45,14 +45,33 @@ class Phergie_Plugin_Owner extends Phergie_Plugin_Abstract
     	
     	if ($this->plugins->permission->getLevel($hostmask) >= 3)
     	{
-    	       if ($reason === null)
-    	       {
-    	           $this->doRaw("PART " . $channel . " :Removed from the channel by $nick");
-    	       } else {
-    	           $this->doRaw("PART " . $channel . " :" . $reason);
-    	       }
+    		if ($channel === null){$channel = $source;}
+    		
+    	    if ($reason === null)
+    	    {
+    	        $this->doRaw("PART " . $channel . " :Removed from the channel by $nick");
+    	    } else {
+    	        $this->doRaw("PART " . $channel . " :" . $reason);
+    	    }
     	} else {
     	    $this->plugins->send->send($source, $this->getConfig('error.noperms') , $nick);
+    	}
+    }
+    
+    public function onInvite()
+    {
+    	$event = $this->getEvent();
+		$source = $event->getSource();
+		$nick = $event->getNick();
+		$hostmask = explode("!", $this->event->getHostmask());
+		$hostmask = $hostmask[1];
+    	$channel = $this->event->getArgument(1);
+    	
+    	if ($this->getConfig("owner.allowInvite"))
+    	{
+    		$this->doJoin($channel);
+    	} else {
+    		$this->plugins->send->send($source, "Sorry but I'm not allowed to join random channels. Ask my owner to take me there instead.", $nick);
     	}
     }
     

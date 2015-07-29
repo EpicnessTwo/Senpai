@@ -41,5 +41,4 @@ class Phergie_Plugin_Random extends Phergie_Plugin_Abstract
 		    $this->plugins->send->send($source, $out, $nick);
 		}
     }
-    
 }
