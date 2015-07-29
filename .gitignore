@@ -1,3 +1,4 @@
 Settings.php
 *.db
 .idea
+push.sh
