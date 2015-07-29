@@ -15,12 +15,12 @@ Future Features:
  - Even more commands
  - Another stage to the permission system that allows for channel status to be used as well as hostmasks
  - User info storage (Using a database)
- - - Custom welcome messages
- - - User specific permission system
- - - Quotes storage
+    - Custom welcome messages
+    - User specific permission system
+    - Quotes storage
  - Web APIs
  - Database driven commands and config
- - - Commands that can be called from the database. This allows for on the fly command adding and changing config items.
+    - Commands that can be called from the database. This allows for on the fly command adding and changing config items.
 
 As most of it is written in a linux box, some things may not fully work on windows. I can't fully help this :<
 
