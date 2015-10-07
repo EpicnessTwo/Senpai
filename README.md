@@ -7,7 +7,7 @@ Currently, the bot has a few commands added but loads more needs adding!
 Current Features:
  - Git manipulation (Requires "git") [Being removed due to buggyness]
  - Permission System
- - Configureable Output System
+ - Configurable Output System
  - Formatting Tools For Output Manipulation
  - Customisable Prefixes for both Commands and Formatting
  
